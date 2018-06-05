@@ -6,6 +6,9 @@
 
 Vertical and horizontal step line indicator.
 
+
+![device-2018-06-05-101846](https://user-images.githubusercontent.com/35038142/40961506-73db43e2-68ab-11e8-9027-69d845af27f2.png)
+
 ## Setup
 Add it in your root build.gradle at the end of repositories:
 ```
@@ -23,29 +26,48 @@ dependencies {
   implementation 'com.github.guy-4444:StepLineIndicator:1.01.01'
 }
 ```
+## Usage
 
 ###### StepView Constructor:
 ```java
         TimeLineLayout timeLayout_1 = (TimeLineLayout)findViewById(R.id.timeLayout_1);
         timeLayout_1.setTimeLines(this, TimelineView.LineOrientation.HORIZONTAL, 5, R.color.colorPrimary, android.R.color.darker_gray);
+	
         // or:
         TimeLineLayout timeLayout_2 = (TimeLineLayout)findViewById(R.id.timeLayout_2);
         timeLayout_2.setTimeLines(this, TimelineView.LineOrientation.VERTICAL, 12, Color.argb(123, 0, 0, 255), android.R.color.darker_gray, android.R.color.darker_gray, 3, 20, 10);
+	
         // or:
         TimeLineLayout timeLayout_3 = (TimeLineLayout)findViewById(R.id.timeLayout_3);
         timeLayout_2.setTimeLines(this, TimelineView.LineOrientation.VERTICAL, 12, Color.argb(123, 0, 0, 255), android.R.color.darker_gray, android.R.color.darker_gray, 3, 20, 10);
+	
         // or:
         TimeLineLayout timeLayout_4 = (TimeLineLayout)findViewById(R.id.timeLayout_4);
-timeLayout_4.setTimeLines(this, TimelineView.LineOrientation.VERTICAL, 60, Color.argb(123, 0, 0, 255), android.R.color.darker_gray, android.R.color.darker_gray, 2, 17, 0);
+	timeLayout_4.setTimeLines(this, TimelineView.LineOrientation.VERTICAL, 60, Color.argb(123, 0, 0, 255), android.R.color.darker_gray, android.R.color.darker_gray, 2, 17, 0);
        
 ```
 
-###### StepView Edit ways:
+###### StepView Constructor parameters:
+
+Context context
+LineOrientation _lineOrientation - TimelineView.LineOrientation.VERTICAL or TimelineView.LineOrientation.HORIZONTAL
+int _numOfItems
+int _mainColor - color of completed items
+int _secondColor - color of uncompleted items
+int _lineColor - color of lines between items
+int _lineSize - 0 is without lines
+int _markerRadius - size of items
+int _linePadding - 0 is without space between lines to itemes
+
+###### StepView Control ways:
 ```java
         timeLayout_1.setUnitCompleted(0);
         timeLayout_1.setUnitInactive(1);
         timeLayout_1.setUnitActive(2);
 ```
+## Credits
+
+Thanks to [vipulasri](https://github.com/vipulasri/Timeline-View)
 
 ## License
 
