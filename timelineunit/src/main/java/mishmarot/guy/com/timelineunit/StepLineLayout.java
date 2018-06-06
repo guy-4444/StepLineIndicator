@@ -38,14 +38,14 @@ public class StepLineLayout extends LinearLayout {
         this.setOrientation(LinearLayout.HORIZONTAL);
     }
 
-    public void setTimeLines(Context context, StepLineView.LineOrientation _lineOrientation, int _numOfItems, int _mainColor, int _secondColor, int _lineColor, int _lineSize, int _markerRadius, int _linePadding){
+    public void setStepLines(Context context, StepLineView.LineOrientation _lineOrientation, int _numOfItems, int _mainColor, int _secondColor, int _lineColor, int _lineSize, int _markerRadius, int _linePadding){
         this.lineSize = _lineSize;
         this.markerRadius = _markerRadius;
         this.linePadding = _linePadding;
-        setTimeLines(context, _lineOrientation, _numOfItems, _mainColor, _secondColor, _lineColor);
+        setStepLines(context, _lineOrientation, _numOfItems, _mainColor, _secondColor, _lineColor);
     }
 
-    public void setTimeLines(Context context, StepLineView.LineOrientation _lineOrientation, int _numOfItems, int _mainColor, int _secondColor, int _lineColor){
+    public void setStepLines(Context context, StepLineView.LineOrientation _lineOrientation, int _numOfItems, int _mainColor, int _secondColor, int _lineColor){
 
         // If the user send resource int instead of Color int..
         try {
@@ -64,10 +64,10 @@ public class StepLineLayout extends LinearLayout {
         this.mainColor = _mainColor;
         this.lineColor = _lineColor;
         this.secondColor = _secondColor;
-        setTimeLines(context, _lineOrientation, _numOfItems);
+        setStepLines(context, _lineOrientation, _numOfItems);
     }
 
-    private void setTimeLines(Context context, StepLineView.LineOrientation _lineOrientation, int numOfItems) {
+    private void setStepLines(Context context, StepLineView.LineOrientation _lineOrientation, int numOfItems) {
         stepLineViews = new ArrayList<>();
 
         this.lineOrientation = _lineOrientation;
@@ -80,20 +80,20 @@ public class StepLineLayout extends LinearLayout {
             return;
         }
         else if (numOfItems == 1) {
-            StepLineView stepLineView4 = getTimeLineUnit(context, StepLineView.LineType.ONLY_ONE, StepLineView.OrderStatus.ACTIVE);
+            StepLineView stepLineView4 = getStepLineUnit(context, StepLineView.LineType.ONLY_ONE, StepLineView.OrderStatus.ACTIVE);
             stepLineViews.add(stepLineView4);
         }
         else {
             // numOfItems > 1
-            StepLineView stepLineView0 = getTimeLineUnit(context, StepLineView.LineType.BEGIN, StepLineView.OrderStatus.ACTIVE);
+            StepLineView stepLineView0 = getStepLineUnit(context, StepLineView.LineType.BEGIN, StepLineView.OrderStatus.ACTIVE);
             stepLineViews.add(stepLineView0);
 
             for (int i = 1; i < numOfItems-1; i++) {
-                StepLineView stepLineView1 = getTimeLineUnit(context, StepLineView.LineType.NORMAL, StepLineView.OrderStatus.ACTIVE);
+                StepLineView stepLineView1 = getStepLineUnit(context, StepLineView.LineType.NORMAL, StepLineView.OrderStatus.ACTIVE);
                 stepLineViews.add(stepLineView1);
             }
 
-            StepLineView stepLineView2 = getTimeLineUnit(context, StepLineView.LineType.END, StepLineView.OrderStatus.ACTIVE);
+            StepLineView stepLineView2 = getStepLineUnit(context, StepLineView.LineType.END, StepLineView.OrderStatus.ACTIVE);
             stepLineViews.add(stepLineView2);
         }
 
@@ -121,7 +121,7 @@ public class StepLineLayout extends LinearLayout {
             stepLineViews.get(completedIndex).setOrderStatus(StepLineView.OrderStatus.COMPLETED);
     }
 
-    public StepLineView getTimeLineUnit(Context context, StepLineView.LineType lineType, StepLineView.OrderStatus orderStatus) {
+    public StepLineView getStepLineUnit(Context context, StepLineView.LineType lineType, StepLineView.OrderStatus orderStatus) {
         // markerSize - default=20
         LinearLayout.LayoutParams linearParams;
         if (lineOrientation == StepLineView.LineOrientation.HORIZONTAL)
