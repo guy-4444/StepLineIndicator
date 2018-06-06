@@ -54,15 +54,23 @@ dependencies {
 
 ###### StepView Constructor parameters:
 
-Context context
-LineOrientation _lineOrientation - TimelineView.LineOrientation.VERTICAL or TimelineView.LineOrientation.HORIZONTAL
-int _numOfItems
-int _mainColor - color of completed items
-int _secondColor - color of uncompleted items
-int _lineColor - color of lines between items
-int _lineSize - 0 is without lines
-int _markerRadius - size of items
-int _linePadding - 0 is without space between lines to itemes
+**Context context**
+
+**LineOrientation** _lineOrientation - TimelineView.LineOrientation.VERTICAL or TimelineView.LineOrientation.HORIZONTAL
+
+**int _numOfItems**
+
+**int _mainColor** - color of completed items
+
+**int _secondColor** - color of uncompleted items
+
+**int _lineColor** - color of lines between items
+
+**int _lineSize** - 0 is without lines
+
+**int _markerRadius** - size of items
+
+**int _linePadding** - 0 is without space between lines to items
 
 ###### StepView Control ways:
 ```java
