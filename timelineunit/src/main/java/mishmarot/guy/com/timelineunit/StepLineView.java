@@ -1,6 +1,5 @@
 package mishmarot.guy.com.timelineunit;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.res.Resources;
 import android.content.res.TypedArray;
@@ -15,12 +14,11 @@ import android.support.v4.content.ContextCompat;
 import android.util.AttributeSet;
 import android.util.TypedValue;
 import android.view.View;
-import android.widget.LinearLayout;
 
 /**
  * Created by HP-HP on 05-12-2015.
  */
-public class TimelineView extends View {
+public class StepLineView extends View {
 
     private Drawable mMarker;
     private Drawable mStartLine;
@@ -41,7 +39,7 @@ public class TimelineView extends View {
 
     Drawable a1, a2, a3;
 
-    public TimelineView(Context context, AttributeSet attrs) {
+    public StepLineView(Context context, AttributeSet attrs) {
         super(context, attrs);
         mContext = context;
         init(attrs);
@@ -308,8 +306,7 @@ public class TimelineView extends View {
         return VectorDrawableCompat.create(context.getResources(), drawableResId, context.getTheme());
     }
 
-    public Drawable getDrawable(Context context, int drawableResId, int colorFilter) {
-        Drawable drawable = getDrawable(context, drawableResId);
+    public Drawable getDrawable(Context context, Drawable drawable, int colorFilter) {
         try {
             drawable.setColorFilter(ContextCompat.getColor(context, colorFilter), PorterDuff.Mode.SRC_IN);
         }
@@ -317,6 +314,16 @@ public class TimelineView extends View {
             drawable.setColorFilter(colorFilter, PorterDuff.Mode.SRC_IN);
         }
         return drawable;
+    }
+
+    public void setDrawables() {
+        a1 = getDrawable(mContext, R.drawable.ic_marker_inactive).mutate();
+        a2 = getDrawable(mContext, R.drawable.ic_marker_active).mutate();
+        a3 = getDrawable(mContext, R.drawable.ic_marker_completed).mutate();
+
+        a1.setColorFilter(mainColor, PorterDuff.Mode.SRC_IN);
+        a2.setColorFilter(secondColor, PorterDuff.Mode.SRC_IN);
+        a3.setColorFilter(mainColor, PorterDuff.Mode.SRC_IN);
     }
 
     public enum LineOrientation {
@@ -358,14 +365,14 @@ public class TimelineView extends View {
             this.mLineOrientation = 1;
     }
 
-    public void setOrderStatus(Context context, OrderStatus orderStatus) {
+    public void setOrderStatus(OrderStatus orderStatus) {
         this.mOrderStatus = orderStatus;
-        if(orderStatus == TimelineView.OrderStatus.INACTIVE) {
-            this.setMarker(getDrawable(context, R.drawable.ic_marker_inactive, mainColor));
-        } else if(orderStatus == TimelineView.OrderStatus.ACTIVE) {
-            this.setMarker(getDrawable(context, R.drawable.ic_marker_active, secondColor));
+        if(orderStatus == StepLineView.OrderStatus.INACTIVE) {
+            this.setMarker(a1);
+        } else if(orderStatus == StepLineView.OrderStatus.ACTIVE) {
+            this.setMarker(a2);
         } else {
-            this.setMarker(getDrawable(context, R.drawable.ic_marker_completed, mainColor));
+            this.setMarker(a3);
         }
 
         invalidate();

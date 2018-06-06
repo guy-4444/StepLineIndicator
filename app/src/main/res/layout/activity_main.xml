@@ -7,18 +7,8 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <mishmarot.guy.com.timelineunit.TimeLineLayout
-        android:id="@+id/timeLayout_4"
-        android:layout_width="50dp"
-        android:layout_height="match_parent"
-        android:layout_alignParentBottom="true"
-        android:layout_below="@+id/timeLayout_1"
-        android:layout_margin="5dp"
-        android:layout_toEndOf="@+id/timeLayout_3"
-        android:orientation="vertical" />
-
-    <mishmarot.guy.com.timelineunit.TimeLineLayout
-        android:id="@+id/timeLayout_1"
+    <mishmarot.guy.com.timelineunit.StepLineLayout
+        android:id="@+id/stepLayout_1"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_alignParentEnd="true"
@@ -26,25 +16,45 @@
         android:layout_margin="5dp"
         android:orientation="horizontal" />
 
-    <mishmarot.guy.com.timelineunit.TimeLineLayout
-        android:id="@+id/timeLayout_2"
+    <mishmarot.guy.com.timelineunit.StepLineLayout
+        android:id="@+id/stepLayout_2"
         android:layout_width="50dp"
         android:layout_height="match_parent"
         android:layout_alignParentTop="false"
-        android:layout_below="@+id/timeLayout_1"
+        android:layout_below="@+id/stepLayout_1"
         android:layout_margin="5dp"
         android:orientation="horizontal">
 
-    </mishmarot.guy.com.timelineunit.TimeLineLayout>
+    </mishmarot.guy.com.timelineunit.StepLineLayout>
 
-    <mishmarot.guy.com.timelineunit.TimeLineLayout
-        android:id="@+id/timeLayout_3"
+    <mishmarot.guy.com.timelineunit.StepLineLayout
+        android:id="@+id/stepLayout_3"
         android:layout_width="50dp"
         android:layout_height="match_parent"
         android:layout_alignParentBottom="true"
-        android:layout_below="@+id/timeLayout_1"
+        android:layout_below="@+id/stepLayout_1"
         android:layout_margin="5dp"
-        android:layout_toEndOf="@+id/timeLayout_2"
+        android:layout_toEndOf="@+id/stepLayout_2"
+        android:orientation="vertical" />
+
+    <mishmarot.guy.com.timelineunit.StepLineLayout
+        android:id="@+id/stepLayout_4"
+        android:layout_width="50dp"
+        android:layout_height="match_parent"
+        android:layout_alignParentBottom="true"
+        android:layout_below="@+id/stepLayout_1"
+        android:layout_margin="5dp"
+        android:layout_toEndOf="@+id/stepLayout_3"
+        android:orientation="vertical" />
+
+    <mishmarot.guy.com.timelineunit.StepLineLayout
+        android:id="@+id/stepLayout_5"
+        android:layout_width="50dp"
+        android:layout_height="match_parent"
+        android:layout_alignParentBottom="true"
+        android:layout_below="@+id/stepLayout_1"
+        android:layout_margin="5dp"
+        android:layout_toEndOf="@+id/stepLayout_4"
         android:orientation="vertical" />
 
     <Button
@@ -53,15 +63,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true"
-        android:text="Button" />
-
-    <Button
-        android:id="@+id/btn2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/btn"
-        android:layout_alignParentEnd="true"
-        android:text="BTN 2" />
+        android:text="Increase" />
 
 
 </RelativeLayout>
