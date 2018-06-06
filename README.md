@@ -7,7 +7,8 @@
 Vertical and horizontal step line indicator.
 
 
-![device-2018-06-06-143847](https://user-images.githubusercontent.com/35038142/41036090-90498556-6997-11e8-98f1-0074f143f53e.png)
+![device-2018-06-06-144912](https://user-images.githubusercontent.com/35038142/41039463-2bf1ce0a-69a2-11e8-963a-3e0259757565.png)
+
 
 ## Setup
 Add it in your root build.gradle at the end of repositories:
