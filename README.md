@@ -7,7 +7,7 @@
 Vertical and horizontal step line indicator.
 
 
-![device-2018-06-05-101846](https://user-images.githubusercontent.com/35038142/40961506-73db43e2-68ab-11e8-9027-69d845af27f2.png)
+![device-2018-06-06-143847](https://user-images.githubusercontent.com/35038142/41036090-90498556-6997-11e8-98f1-0074f143f53e.png)
 
 ## Setup
 Add it in your root build.gradle at the end of repositories:
@@ -33,6 +33,10 @@ dependencies {
         TimeLineLayout timeLayout_1 = (TimeLineLayout)findViewById(R.id.timeLayout_1);
         timeLayout_1.setTimeLines(this, TimelineView.LineOrientation.HORIZONTAL, 5, R.color.colorPrimary, android.R.color.darker_gray);
 	
+	// or:
+	        TimeLineLayout timeLayout_1 = (TimeLineLayout)findViewById(R.id.timeLayout_1);
+	        timeLayout_1.setTimeLines(this, TimelineView.LineOrientation.HORIZONTAL, 7, R.color.colorPrimary, android.R.color.darker_gray, R.color.colorPrimary);
+
         // or:
         TimeLineLayout timeLayout_2 = (TimeLineLayout)findViewById(R.id.timeLayout_2);
         timeLayout_2.setTimeLines(this, TimelineView.LineOrientation.VERTICAL, 12, Color.argb(123, 0, 0, 255), android.R.color.darker_gray, android.R.color.darker_gray, 3, 20, 10);
