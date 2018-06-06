@@ -1,8 +1,8 @@
 # StepLineIndicator
 
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://github.com/vlad1m1r990/Lemniscate/blob/master/LICENSE)
-[![](https://jitpack.io/v/arbelkilani/BiColored-Progress.svg)](https://jitpack.io/#arbelkilani/Compass-View)
-[![API](https://img.shields.io/badge/API-19%2B-green.svg?style=flat)]()
+[![](https://jitpack.io/v/guy-4444/StepLineIndicator.svg)](https://jitpack.io/#guy-4444/StepLineIndicator)
+[![API](https://img.shields.io/badge/API-21%2B-green.svg?style=flat)]()
 
 Vertical and horizontal step line indicator.
 
