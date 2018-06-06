@@ -31,24 +31,24 @@ dependencies {
 
 ###### StepView Constructor:
 ```java
-        TimeLineLayout timeLayout_1 = (TimeLineLayout)findViewById(R.id.timeLayout_1);
-        timeLayout_1.setTimeLines(this, TimelineView.LineOrientation.HORIZONTAL, 5, R.color.colorPrimary, android.R.color.darker_gray);
+        StepLineLayout stepLayout_1 = (StepLineLayout)findViewById(R.id.timeLayout_1);
+        stepLayout_1.setStepLines(this, SteplineView.LineOrientation.HORIZONTAL, 5, R.color.colorPrimary, android.R.color.darker_gray);
 	
 	// or:
-	TimeLineLayout timeLayout_1 = (TimeLineLayout)findViewById(R.id.timeLayout_1);
-	timeLayout_1.setTimeLines(this, TimelineView.LineOrientation.HORIZONTAL, 7, R.color.colorPrimary, android.R.color.darker_gray, R.color.colorPrimary);
+	StepLineLayout stepLayout_1 = (StepLineLayout)findViewById(R.id.stepLayout_1);
+	stepLayout_1.setStepLines(this, SteplineView.LineOrientation.HORIZONTAL, 7, R.color.colorPrimary, android.R.color.darker_gray, R.color.colorPrimary);
 
         // or:
-        TimeLineLayout timeLayout_2 = (TimeLineLayout)findViewById(R.id.timeLayout_2);
-        timeLayout_2.setTimeLines(this, TimelineView.LineOrientation.VERTICAL, 12, Color.argb(123, 0, 0, 255), android.R.color.darker_gray, android.R.color.darker_gray, 3, 20, 10);
+        StepLineLayout stepLayout_2 = (StepLineLayout)findViewById(R.id.stepLayout_2);
+        stepLayout_2.setStepLines(this, SteplineView.LineOrientation.VERTICAL, 12, Color.argb(123, 0, 0, 255), android.R.color.darker_gray, android.R.color.darker_gray, 3, 20, 10);
 	
         // or:
-        TimeLineLayout timeLayout_3 = (TimeLineLayout)findViewById(R.id.timeLayout_3);
-        timeLayout_2.setTimeLines(this, TimelineView.LineOrientation.VERTICAL, 12, Color.argb(123, 0, 0, 255), android.R.color.darker_gray, android.R.color.darker_gray, 3, 20, 10);
+        StepLineLayout stepLayout_3 = (StepLineLayout)findViewById(R.id.stepLayout_3);
+        stepLayout_2.setStepLines(this, SteplineView.LineOrientation.VERTICAL, 12, Color.argb(123, 0, 0, 255), android.R.color.darker_gray, android.R.color.darker_gray, 3, 20, 10);
 	
         // or:
-        TimeLineLayout timeLayout_4 = (TimeLineLayout)findViewById(R.id.timeLayout_4);
-	timeLayout_4.setTimeLines(this, TimelineView.LineOrientation.VERTICAL, 60, Color.argb(123, 0, 0, 255), android.R.color.darker_gray, android.R.color.darker_gray, 2, 17, 0);
+        StepLineLayout stepLayout_4 = (StepLineLayout)findViewById(R.id.stepLayout_4);
+	stepLayout_4.setStepLines(this, SteplineView.LineOrientation.VERTICAL, 60, Color.argb(123, 0, 0, 255), android.R.color.darker_gray, android.R.color.darker_gray, 2, 17, 0);
        
 ```
 
@@ -56,7 +56,7 @@ dependencies {
 
 **Context context**
 
-**LineOrientation** _lineOrientation - TimelineView.LineOrientation.VERTICAL or TimelineView.LineOrientation.HORIZONTAL
+**LineOrientation** _lineOrientation - SteplineView.LineOrientation.VERTICAL or SteplineView.LineOrientation.HORIZONTAL
 
 **int _numOfItems**
 
@@ -74,9 +74,9 @@ dependencies {
 
 ###### StepView Control ways:
 ```java
-        timeLayout_1.setUnitCompleted(0);
-        timeLayout_1.setUnitInactive(1);
-        timeLayout_1.setUnitActive(2);
+        stepLayout_1.setUnitCompleted(0);
+        stepLayout_1.setUnitInactive(1);
+        stepLayout_1.setUnitActive(2);
 ```
 ## Credits
 
