@@ -39,6 +39,8 @@ public class TimelineView extends View {
     private Rect mBounds;
     private Context mContext;
 
+    Drawable a1, a2, a3;
+
     public TimelineView(Context context, AttributeSet attrs) {
         super(context, attrs);
         mContext = context;
@@ -293,20 +295,20 @@ public class TimelineView extends View {
         }
     }
 
-    public static int dpToPx(float dp, Context context) {
+    public int dpToPx(float dp, Context context) {
         return dpToPx(dp, context.getResources());
     }
 
-    public static int dpToPx(float dp, Resources resources) {
+    public int dpToPx(float dp, Resources resources) {
         float px = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp, resources.getDisplayMetrics());
         return (int) px;
     }
 
-    public static Drawable getDrawable(Context context, int drawableResId) {
+    public Drawable getDrawable(Context context, int drawableResId) {
         return VectorDrawableCompat.create(context.getResources(), drawableResId, context.getTheme());
     }
 
-    public static Drawable getDrawable(Context context, int drawableResId, int colorFilter) {
+    public Drawable getDrawable(Context context, int drawableResId, int colorFilter) {
         Drawable drawable = getDrawable(context, drawableResId);
         try {
             drawable.setColorFilter(ContextCompat.getColor(context, colorFilter), PorterDuff.Mode.SRC_IN);
@@ -359,11 +361,11 @@ public class TimelineView extends View {
     public void setOrderStatus(Context context, OrderStatus orderStatus) {
         this.mOrderStatus = orderStatus;
         if(orderStatus == TimelineView.OrderStatus.INACTIVE) {
-            this.setMarker(TimelineView.getDrawable(context, R.drawable.ic_marker_inactive, mainColor));
+            this.setMarker(getDrawable(context, R.drawable.ic_marker_inactive, mainColor));
         } else if(orderStatus == TimelineView.OrderStatus.ACTIVE) {
-            this.setMarker(TimelineView.getDrawable(context, R.drawable.ic_marker_active, secondColor));
+            this.setMarker(getDrawable(context, R.drawable.ic_marker_active, secondColor));
         } else {
-            this.setMarker(TimelineView.getDrawable(context, R.drawable.ic_marker_completed, mainColor));
+            this.setMarker(getDrawable(context, R.drawable.ic_marker_completed, mainColor));
         }
 
         invalidate();

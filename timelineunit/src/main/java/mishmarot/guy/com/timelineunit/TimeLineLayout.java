@@ -141,13 +141,13 @@ public class TimeLineLayout extends LinearLayout {
         timelineView.setMainColor(mainColor);
         timelineView.setSecondColor(secondColor);
         timelineView.setLineColor(lineColor);
-        timelineView.setOrderStatus(context, orderStatus);
         timelineView.initLine(lineType);
         timelineView.setLayoutParams(linearParams);
         timelineView.setLineOrientation(lineOrientation);
         timelineView.setLineSize((int) (lineSize * density));
         timelineView.setMarkerSize((int) (markerRadius * density));
         timelineView.setLinePadding(linePadding);
+        timelineView.setOrderStatus(context, orderStatus);
 
         return timelineView;
     }
