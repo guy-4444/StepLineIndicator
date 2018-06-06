@@ -13,7 +13,6 @@ import android.graphics.drawable.Drawable;
 import android.support.graphics.drawable.VectorDrawableCompat;
 import android.support.v4.content.ContextCompat;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.util.TypedValue;
 import android.view.View;
 import android.widget.LinearLayout;
@@ -33,30 +32,20 @@ public class TimelineView extends View {
     private boolean mMarkerInCenter;
     private OrderStatus mOrderStatus = OrderStatus.ACTIVE;
 
-    //private int mainColor = ContextCompat.getColor(getContext(), android.R.color.holo_orange_dark);
-    //private int secondColor = ContextCompat.getColor(getContext(), android.R.color.darker_gray);
-    //private int lineColor = ContextCompat.getColor(getContext(), android.R.color.darker_gray);
-
-    public int mainColor = Color.argb(255, 0, 255, 0);
+    private int mainColor = Color.argb(255, 0, 255, 0);
     private int secondColor = Color.argb(255, 0, 255, 0);
     private int lineColor = Color.argb(255, 0, 255, 0);
-
-    //private int mainColor;
-    //private int secondColor;
-    //private int lineColor;
 
     private Rect mBounds;
     private Context mContext;
 
     public TimelineView(Context context, AttributeSet attrs) {
         super(context, attrs);
-        Log.d("pttt", "TimelineView");
         mContext = context;
         init(attrs);
     }
 
     private void init(AttributeSet attrs) {
-        Log.d("pttt", "init");
         TypedArray typedArray = getContext().obtainStyledAttributes(attrs,R.styleable.timeline_style);
         mMarker = typedArray.getDrawable(R.styleable.timeline_style_marker);
         mStartLine = typedArray.getDrawable(R.styleable.timeline_style_line);
@@ -83,7 +72,6 @@ public class TimelineView extends View {
 
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-        Log.d("pttt", "onMeasure");
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
         //Width measurements of the width and height and the inside view of child controls
         int w = mMarkerSize + getPaddingLeft() + getPaddingRight();
@@ -99,7 +87,6 @@ public class TimelineView extends View {
 
     @Override
     protected void onSizeChanged(int w, int h, int oldw, int oldh) {
-        Log.d("pttt", "onSizeChanged");
         super.onSizeChanged(w, h, oldw, oldh);
         // When the view is displayed when the callback
         // Positioning Drawable coordinates, then draw
@@ -107,7 +94,6 @@ public class TimelineView extends View {
     }
 
     private void initDrawable() {
-        Log.d("pttt", "initDrawable");
         int pLeft = getPaddingLeft();
         int pRight = getPaddingRight();
         int pTop = getPaddingTop();
@@ -164,11 +150,8 @@ public class TimelineView extends View {
 
     @Override
     protected void onDraw(Canvas canvas) {
-        Log.d("pttt", "onDraw B");
         super.onDraw(canvas);
         if(mMarker != null) {
-            //mMarker.setColorFilter(mainColor, PorterDuff.Mode.SRC_ATOP);
-//            mMarker.setColorFilter(Color.argb(255, 255, 0, 0), PorterDuff.Mode.SRC_ATOP);
             mMarker.draw(canvas);
         }
 
@@ -179,7 +162,6 @@ public class TimelineView extends View {
         if(mEndLine != null) {
             mEndLine.draw(canvas);
         }
-        //invalidate();
     }
 
     /**
@@ -220,7 +202,7 @@ public class TimelineView extends View {
      * @param color    the color
      * @param viewType the view type
      */
-    public void setStartLine(int color, int viewType) {
+    public void setStartLine(int color, LineType viewType) {
         mStartLine = new ColorDrawable(color);
         initLine(viewType);
     }
@@ -231,7 +213,7 @@ public class TimelineView extends View {
      * @param color    the color
      * @param viewType the view type
      */
-    public void setEndLine(int color, int viewType) {
+    public void setEndLine(int color, LineType viewType) {
         mEndLine = new ColorDrawable(color);
         initLine(viewType);
     }
@@ -280,7 +262,7 @@ public class TimelineView extends View {
      *
      * @param viewType the view type
      */
-    public void initLine(int viewType) {
+    public void initLine(LineType viewType) {
         if(viewType == LineType.BEGIN) {
             setStartLine(null);
         } else if(viewType == LineType.END) {
@@ -299,7 +281,7 @@ public class TimelineView extends View {
      * @param total_size the total size
      * @return the time line view type
      */
-    public static int getTimeLineViewType(int position, int total_size) {
+    public static LineType getTimeLineViewType(int position, int total_size) {
         if(total_size == 1) {
             return LineType.ONLY_ONE;
         } else if(position == 0) {
@@ -321,21 +303,17 @@ public class TimelineView extends View {
     }
 
     public static Drawable getDrawable(Context context, int drawableResId) {
-        Log.d("pttt", "getDrawable A");
         return VectorDrawableCompat.create(context.getResources(), drawableResId, context.getTheme());
     }
 
     public static Drawable getDrawable(Context context, int drawableResId, int colorFilter) {
-        Log.d("pttt", "getDrawable B");
         Drawable drawable = getDrawable(context, drawableResId);
-
-        drawable.setColorFilter(colorFilter, PorterDuff.Mode.SRC_IN);
-
-//        try {
-//            drawable.setColorFilter(ContextCompat.getColor(context, colorFilter), PorterDuff.Mode.SRC_IN);
-//        }
-//        catch (Exception ex) {
-//        }
+        try {
+            drawable.setColorFilter(ContextCompat.getColor(context, colorFilter), PorterDuff.Mode.SRC_IN);
+        }
+        catch (Exception ex) {
+            drawable.setColorFilter(colorFilter, PorterDuff.Mode.SRC_IN);
+        }
         return drawable;
     }
 
@@ -344,11 +322,11 @@ public class TimelineView extends View {
         HORIZONTAL;
     }
 
-    public class LineType {
-        public static final int NORMAL = 0;
-        public static final int BEGIN = 1;
-        public static final int END = 2;
-        public static final int ONLY_ONE = 3;
+    public enum LineType {
+        NORMAL,
+        BEGIN,
+        END,
+        ONLY_ONE;
     }
 
     public enum OrderStatus {
@@ -359,8 +337,6 @@ public class TimelineView extends View {
 
     public void setMainColor(int _mainColor) {
         this.mainColor = _mainColor;
-        //mMarker.setColorFilter(Color.argb(255, 150, 150, 0), PorterDuff.Mode.SRC_ATOP);
-
     }
 
     public void setSecondColor(int _secondColor) {
@@ -389,15 +365,11 @@ public class TimelineView extends View {
         } else {
             this.setMarker(TimelineView.getDrawable(context, R.drawable.ic_marker_completed, mainColor));
         }
-        //initDrawable();
+
         invalidate();
     }
 
-    @Override
-    public void setOnFocusChangeListener(OnFocusChangeListener l) {
-        Log.d("pttt", "setOnFocusChangeListener");
-        super.setOnFocusChangeListener(l);
+    public int getMainColor() {
+        return mainColor;
     }
-
-
 }

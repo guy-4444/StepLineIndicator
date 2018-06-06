@@ -24,15 +24,15 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        timeLayout_1 = (TimeLineLayout)findViewById(R.id.timeLayout_1);
-        timeLayout_2 = (TimeLineLayout)findViewById(R.id.timeLayout_2);
-        timeLayout_3 = (TimeLineLayout)findViewById(R.id.timeLayout_3);
-        timeLayout_4 = (TimeLineLayout)findViewById(R.id.timeLayout_4);
+        timeLayout_1 = (TimeLineLayout) findViewById(R.id.timeLayout_1);
+        timeLayout_2 = (TimeLineLayout) findViewById(R.id.timeLayout_2);
+        timeLayout_3 = (TimeLineLayout) findViewById(R.id.timeLayout_3);
+        timeLayout_4 = (TimeLineLayout) findViewById(R.id.timeLayout_4);
 
         timeLayout_1.setTimeLines(this, TimelineView.LineOrientation.HORIZONTAL, 5, R.color.colorPrimary, android.R.color.darker_gray);
         timeLayout_2.setTimeLines(this, TimelineView.LineOrientation.VERTICAL, 12, Color.argb(123, 0, 0, 255), android.R.color.darker_gray, android.R.color.darker_gray, 3, 20, 10);
+        timeLayout_4.setTimeLines(this, TimelineView.LineOrientation.VERTICAL, 6, Color.argb(20, 0, 244, 0), Color.argb(123, 0, 255, 0), Color.argb(123, 200, 200, 0), 4, 25, 0);
         timeLayout_3.setTimeLines(this, TimelineView.LineOrientation.VERTICAL, 5, R.color.colorPrimary, android.R.color.darker_gray);
-        timeLayout_4.setTimeLines(this, TimelineView.LineOrientation.VERTICAL, 6, Color.argb(123, 250, 0, 0), Color.argb(123, 0, 255, 0), Color.argb(123, 200, 200, 0), 4, 25, 0);
 
         timeLayout_1.setUnitCompleted(0);
         timeLayout_1.setUnitActive(1);
@@ -67,13 +67,18 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 timeLayout_4.setUnitCompleted(index);
                 timeLayout_4.setUnitInactive(++index);
+                timeLayout_2.setUnitCompleted(1);
+
             }
         });
 
         ((Button) findViewById(R.id.btn2)).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Log.d("pttt", "Color=" + timeLayout_4.timelineViews.get(0).mainColor);
+                Log.d("pttt", "-\nColor=" + timeLayout_1.timelineViews.get(0).getMainColor() + "," + timeLayout_1.timelineViews.get(4).getMainColor());
+                Log.d("pttt", "-\nColor=" + timeLayout_2.timelineViews.get(0).getMainColor() + "," + timeLayout_2.timelineViews.get(4).getMainColor());
+                Log.d("pttt", "-\nColor=" + timeLayout_4.timelineViews.get(0).getMainColor() + "," + timeLayout_4.timelineViews.get(4).getMainColor());
+                Log.d("pttt", "-\nColor=" + timeLayout_3.timelineViews.get(0).getMainColor() + "," + timeLayout_3.timelineViews.get(4).getMainColor());
 
             }
         });
