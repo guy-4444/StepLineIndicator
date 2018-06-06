@@ -35,8 +35,8 @@ dependencies {
         timeLayout_1.setTimeLines(this, TimelineView.LineOrientation.HORIZONTAL, 5, R.color.colorPrimary, android.R.color.darker_gray);
 	
 	// or:
-	        TimeLineLayout timeLayout_1 = (TimeLineLayout)findViewById(R.id.timeLayout_1);
-	        timeLayout_1.setTimeLines(this, TimelineView.LineOrientation.HORIZONTAL, 7, R.color.colorPrimary, android.R.color.darker_gray, R.color.colorPrimary);
+	TimeLineLayout timeLayout_1 = (TimeLineLayout)findViewById(R.id.timeLayout_1);
+	timeLayout_1.setTimeLines(this, TimelineView.LineOrientation.HORIZONTAL, 7, R.color.colorPrimary, android.R.color.darker_gray, R.color.colorPrimary);
 
         // or:
         TimeLineLayout timeLayout_2 = (TimeLineLayout)findViewById(R.id.timeLayout_2);
