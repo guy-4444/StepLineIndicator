@@ -2,12 +2,14 @@ package mishmarot.guy.com.timelineunit;
 
 import android.app.Activity;
 import android.content.Context;
+import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.content.res.ResourcesCompat;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
@@ -20,32 +22,44 @@ import java.util.concurrent.ExecutionException;
 public class TimeLineLayout extends LinearLayout {
 
     Context context;
-    ArrayList<TimelineView> timelineViews;
-    int mainColor = Color.argb(255, 0, 0, 255);
-    int secondColor = Color.argb(255, 25, 25, 25);
+    public ArrayList<TimelineView> timelineViews;
+//    int mainColor = Color.argb(255, 0, 0, 255);
+    //int mainColor = Color.argb(255, 189, 45, 0);
+    //int secondColor = Color.argb(255, 25, 25, 25);
+    //int lineColor = Color.argb(255, 25, 25, 100);
+
+    int mainColor = Color.argb(255, 0, 0, 0);
+    int secondColor = Color.argb(255, 0, 0, 0);
+    int lineColor = Color.argb(255, 0, 0, 0);
+
     int markerRadius = 20;
-    int lineColor = android.R.color.darker_gray;
     int lineSize = 3;
     int linePadding = 0;
     TimelineView.LineOrientation lineOrientation = TimelineView.LineOrientation.VERTICAL;
 
     public TimeLineLayout(Context context) {
         this(context, null, 0);
+        Log.d("ptttL", "TimeLineLayout");
+
     }
 
     public TimeLineLayout(Context context, AttributeSet attrs) {
         this(context, attrs, 0);
+        Log.d("ptttL", "TimeLineLayout");
     }
 
     public TimeLineLayout(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
+        Log.d("ptttL", "TimeLineLayout");
         init(context);
     }
 
     private void init(Context context) {
+        Log.d("ptttL", "init");
         this.setOrientation(LinearLayout.HORIZONTAL);
-        mainColor = Color.argb(255, 0, 0, 255);
-        secondColor = context.getResources().getColor(android.R.color.darker_gray);
+        //lineColor = Color.argb(255, 25, 25, 25);
+        //mainColor = Color.argb(255, 0, 0, 255);
+        //secondColor = context.getResources().getColor(android.R.color.darker_gray);
     }
 
     public void setTimeLines(Context context, TimelineView.LineOrientation _lineOrientation, int _numOfItems, int _mainColor, int _secondColor, int _lineColor, int _lineSize, int _markerRadius, int _linePadding){
@@ -76,19 +90,19 @@ public class TimeLineLayout extends LinearLayout {
             return;
         }
         else if (numOfItems == 1) {
-            timelineView = getTimeLineUnit(context, TimelineView.LineType.ONLY_ONE, TimelineView.OrderStatus.ACTIVE, mainColor, secondColor);
+            timelineView = getTimeLineUnit(context, TimelineView.LineType.ONLY_ONE, TimelineView.OrderStatus.ACTIVE);
             timelineViews.add(timelineView);
         }
         else if (numOfItems > 1) {
-            timelineView = getTimeLineUnit(context, TimelineView.LineType.BEGIN, TimelineView.OrderStatus.ACTIVE, mainColor, secondColor);
+            timelineView = getTimeLineUnit(context, TimelineView.LineType.BEGIN, TimelineView.OrderStatus.ACTIVE);
             timelineViews.add(timelineView);
 
             for (int i = 1; i < numOfItems-1; i++) {
-                timelineView = getTimeLineUnit(context, TimelineView.LineType.NORMAL, TimelineView.OrderStatus.ACTIVE, mainColor, secondColor);
+                timelineView = getTimeLineUnit(context, TimelineView.LineType.NORMAL, TimelineView.OrderStatus.ACTIVE);
                 timelineViews.add(timelineView);
             }
 
-            timelineView = getTimeLineUnit(context, TimelineView.LineType.END, TimelineView.OrderStatus.ACTIVE, mainColor, secondColor);
+            timelineView = getTimeLineUnit(context, TimelineView.LineType.END, TimelineView.OrderStatus.ACTIVE);
             timelineViews.add(timelineView);
         }
 
@@ -96,6 +110,7 @@ public class TimeLineLayout extends LinearLayout {
     }
 
     private void attachListToView() {
+        Log.d("ptttL", "attachListToView");
         for (int i = 0; i < timelineViews.size(); i++) {
             this.addView(timelineViews.get(i));
         }
@@ -113,7 +128,7 @@ public class TimeLineLayout extends LinearLayout {
         timelineViews.get(completedIndex).setOrderStatus(getContext(), TimelineView.OrderStatus.COMPLETED);
     }
 
-    public TimelineView getTimeLineUnit(Context context, int lineType, TimelineView.OrderStatus orderStatus, int mainColor, int secondColor) {
+    public TimelineView getTimeLineUnit(Context context, int lineType, TimelineView.OrderStatus orderStatus) {
         // markerSize - default=20
         LinearLayout.LayoutParams linearParams;
         if (lineOrientation == TimelineView.LineOrientation.HORIZONTAL)
@@ -139,4 +154,10 @@ public class TimeLineLayout extends LinearLayout {
         return timelineView;
     }
 
+    @Override
+    protected void onDraw(Canvas canvas) {
+        super.onDraw(canvas);
+        Log.d("ptttL", "onDraw");
+        invalidate();
+    }
 }

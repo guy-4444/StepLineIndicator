@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.res.Resources;
 import android.content.res.TypedArray;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.Rect;
 import android.graphics.drawable.ColorDrawable;
@@ -12,6 +13,7 @@ import android.graphics.drawable.Drawable;
 import android.support.graphics.drawable.VectorDrawableCompat;
 import android.support.v4.content.ContextCompat;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.util.TypedValue;
 import android.view.View;
 import android.widget.LinearLayout;
@@ -31,20 +33,30 @@ public class TimelineView extends View {
     private boolean mMarkerInCenter;
     private OrderStatus mOrderStatus = OrderStatus.ACTIVE;
 
-    private int mainColor = android.R.color.holo_blue_dark;
-    private int secondColor = android.R.color.darker_gray;
-    private int lineColor = android.R.color.darker_gray;
+    //private int mainColor = ContextCompat.getColor(getContext(), android.R.color.holo_orange_dark);
+    //private int secondColor = ContextCompat.getColor(getContext(), android.R.color.darker_gray);
+    //private int lineColor = ContextCompat.getColor(getContext(), android.R.color.darker_gray);
+
+    public int mainColor = Color.argb(255, 0, 255, 0);
+    private int secondColor = Color.argb(255, 0, 255, 0);
+    private int lineColor = Color.argb(255, 0, 255, 0);
+
+    //private int mainColor;
+    //private int secondColor;
+    //private int lineColor;
 
     private Rect mBounds;
     private Context mContext;
 
     public TimelineView(Context context, AttributeSet attrs) {
         super(context, attrs);
+        Log.d("pttt", "TimelineView");
         mContext = context;
         init(attrs);
     }
 
     private void init(AttributeSet attrs) {
+        Log.d("pttt", "init");
         TypedArray typedArray = getContext().obtainStyledAttributes(attrs,R.styleable.timeline_style);
         mMarker = typedArray.getDrawable(R.styleable.timeline_style_marker);
         mStartLine = typedArray.getDrawable(R.styleable.timeline_style_line);
@@ -64,13 +76,14 @@ public class TimelineView extends View {
             //mStartLine = new ColorDrawable(mContext.getResources().getColor(android.R.color.darker_gray));
             //mEndLine = new ColorDrawable(mContext.getResources().getColor(android.R.color.darker_gray));
 
-            mStartLine = new ColorDrawable(mContext.getResources().getColor(lineColor));
-            mEndLine = new ColorDrawable(mContext.getResources().getColor(lineColor));
+            mStartLine = new ColorDrawable(lineColor);
+            mEndLine = new ColorDrawable(lineColor);
         }
     }
 
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+        Log.d("pttt", "onMeasure");
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
         //Width measurements of the width and height and the inside view of child controls
         int w = mMarkerSize + getPaddingLeft() + getPaddingRight();
@@ -86,6 +99,7 @@ public class TimelineView extends View {
 
     @Override
     protected void onSizeChanged(int w, int h, int oldw, int oldh) {
+        Log.d("pttt", "onSizeChanged");
         super.onSizeChanged(w, h, oldw, oldh);
         // When the view is displayed when the callback
         // Positioning Drawable coordinates, then draw
@@ -93,6 +107,7 @@ public class TimelineView extends View {
     }
 
     private void initDrawable() {
+        Log.d("pttt", "initDrawable");
         int pLeft = getPaddingLeft();
         int pRight = getPaddingRight();
         int pTop = getPaddingTop();
@@ -149,8 +164,11 @@ public class TimelineView extends View {
 
     @Override
     protected void onDraw(Canvas canvas) {
+        Log.d("pttt", "onDraw B");
         super.onDraw(canvas);
         if(mMarker != null) {
+            //mMarker.setColorFilter(mainColor, PorterDuff.Mode.SRC_ATOP);
+//            mMarker.setColorFilter(Color.argb(255, 255, 0, 0), PorterDuff.Mode.SRC_ATOP);
             mMarker.draw(canvas);
         }
 
@@ -161,6 +179,7 @@ public class TimelineView extends View {
         if(mEndLine != null) {
             mEndLine.draw(canvas);
         }
+        //invalidate();
     }
 
     /**
@@ -302,17 +321,21 @@ public class TimelineView extends View {
     }
 
     public static Drawable getDrawable(Context context, int drawableResId) {
+        Log.d("pttt", "getDrawable A");
         return VectorDrawableCompat.create(context.getResources(), drawableResId, context.getTheme());
     }
 
     public static Drawable getDrawable(Context context, int drawableResId, int colorFilter) {
+        Log.d("pttt", "getDrawable B");
         Drawable drawable = getDrawable(context, drawableResId);
-        try {
-            drawable.setColorFilter(ContextCompat.getColor(context, colorFilter), PorterDuff.Mode.SRC_IN);
-        }
-        catch (Exception ex) {
-            drawable.setColorFilter(colorFilter, PorterDuff.Mode.SRC_IN);
-        }
+
+        drawable.setColorFilter(colorFilter, PorterDuff.Mode.SRC_IN);
+
+//        try {
+//            drawable.setColorFilter(ContextCompat.getColor(context, colorFilter), PorterDuff.Mode.SRC_IN);
+//        }
+//        catch (Exception ex) {
+//        }
         return drawable;
     }
 
@@ -336,6 +359,8 @@ public class TimelineView extends View {
 
     public void setMainColor(int _mainColor) {
         this.mainColor = _mainColor;
+        //mMarker.setColorFilter(Color.argb(255, 150, 150, 0), PorterDuff.Mode.SRC_ATOP);
+
     }
 
     public void setSecondColor(int _secondColor) {
@@ -344,8 +369,8 @@ public class TimelineView extends View {
 
     public void setLineColor(int _lineColor) {
         this.lineColor = _lineColor;
-        mStartLine = new ColorDrawable(mContext.getResources().getColor(lineColor));
-        mEndLine = new ColorDrawable(mContext.getResources().getColor(lineColor));
+        mStartLine = new ColorDrawable(lineColor);
+        mEndLine = new ColorDrawable(lineColor);
     }
 
     public void setLineOrientation(LineOrientation _mLineOrientation) {
@@ -364,7 +389,15 @@ public class TimelineView extends View {
         } else {
             this.setMarker(TimelineView.getDrawable(context, R.drawable.ic_marker_completed, mainColor));
         }
-
-        initDrawable();
+        //initDrawable();
+        invalidate();
     }
+
+    @Override
+    public void setOnFocusChangeListener(OnFocusChangeListener l) {
+        Log.d("pttt", "setOnFocusChangeListener");
+        super.setOnFocusChangeListener(l);
+    }
+
+
 }

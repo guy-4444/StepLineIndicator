@@ -47,6 +47,21 @@
         android:layout_toEndOf="@+id/timeLayout_2"
         android:orientation="vertical" />
 
+    <Button
+        android:id="@+id/btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:text="Button" />
+
+    <Button
+        android:id="@+id/btn2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/btn"
+        android:layout_alignParentEnd="true"
+        android:text="BTN 2" />
 
 
 </RelativeLayout>
