@@ -24,7 +24,7 @@ Step 2. Add the dependency:
 
 ```
 dependencies {
-  implementation 'com.github.guy-4444:StepLineIndicator:1.02.01'
+  implementation 'com.github.guy-4444:StepLineIndicator:1.02.03'
 }
 ```
 ## Usage
@@ -50,6 +50,15 @@ dependencies {
         StepLineLayout stepLayout_4 = (StepLineLayout)findViewById(R.id.stepLayout_4);
 	stepLayout_4.setStepLines(this, SteplineView.LineOrientation.VERTICAL, 60, Color.argb(123, 0, 0, 255), android.R.color.darker_gray, android.R.color.darker_gray, 2, 17, 0);
        
+       // or with item click listener:
+       StepLineLayout stepLayout_5 = (StepLineLayout)findViewById(R.id.stepLayout_5);
+       stepLayout_5.setStepLines(this, StepLineView.LineOrientation.VERTICAL, 40, R.color.colorPrimary, android.R.color.darker_gray, Color.argb(123, 200, 200, 0), 4, 25, 0, new CallBack_StepViewClick() {
+            @Override
+            public void onClick(int position) {
+                Toast.makeText(MainActivity.this, position + " Clicked!!", Toast.LENGTH_SHORT).show();
+            }
+        });
+
 ```
 
 ###### StepView Constructor parameters:
