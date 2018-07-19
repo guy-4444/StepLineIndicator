@@ -24,7 +24,7 @@ Step 2. Add the dependency:
 
 ```
 dependencies {
-  implementation 'com.github.guy-4444:StepLineIndicator:1.02.01'
+  implementation 'com.github.guy-4444:StepLineIndicator:1.02.03'
 }
 ```
 ## Usage
