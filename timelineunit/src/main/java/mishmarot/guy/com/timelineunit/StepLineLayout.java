@@ -39,13 +39,21 @@ public class StepLineLayout extends LinearLayout {
     }
 
     public void setStepLines(Context context, StepLineView.LineOrientation _lineOrientation, int _numOfItems, int _mainColor, int _secondColor, int _lineColor, int _lineSize, int _markerRadius, int _linePadding){
+        setStepLines(context, lineOrientation, _numOfItems, _mainColor, _secondColor, _lineColor, _lineSize, _markerRadius, _linePadding, null);
+    }
+
+    public void setStepLines(Context context, StepLineView.LineOrientation _lineOrientation, int _numOfItems, int _mainColor, int _secondColor, int _lineColor, int _lineSize, int _markerRadius, int _linePadding, CallBack_StepViewClick _callBack_stepViewClick){
         this.lineSize = _lineSize;
         this.markerRadius = _markerRadius;
         this.linePadding = _linePadding;
-        setStepLines(context, _lineOrientation, _numOfItems, _mainColor, _secondColor, _lineColor);
+        setStepLines(context, _lineOrientation, _numOfItems, _mainColor, _secondColor, _lineColor, _callBack_stepViewClick);
     }
 
     public void setStepLines(Context context, StepLineView.LineOrientation _lineOrientation, int _numOfItems, int _mainColor, int _secondColor, int _lineColor){
+        setStepLines(context, _lineOrientation, _numOfItems, _mainColor, _secondColor, _lineColor, null);
+    }
+
+    public void setStepLines(Context context, StepLineView.LineOrientation _lineOrientation, int _numOfItems, int _mainColor, int _secondColor, int _lineColor, CallBack_StepViewClick callBack_stepViewClick){
 
         // If the user send resource int instead of Color int..
         try {
@@ -64,10 +72,10 @@ public class StepLineLayout extends LinearLayout {
         this.mainColor = _mainColor;
         this.lineColor = _lineColor;
         this.secondColor = _secondColor;
-        setStepLines(context, _lineOrientation, _numOfItems);
+        setStepLines(context, _lineOrientation, _numOfItems, callBack_stepViewClick);
     }
 
-    private void setStepLines(Context context, StepLineView.LineOrientation _lineOrientation, int numOfItems) {
+    private void setStepLines(Context context, StepLineView.LineOrientation _lineOrientation, int numOfItems, CallBack_StepViewClick _callBack_stepViewClick) {
         stepLineViews = new ArrayList<>();
 
         this.lineOrientation = _lineOrientation;
@@ -80,20 +88,20 @@ public class StepLineLayout extends LinearLayout {
             return;
         }
         else if (numOfItems == 1) {
-            StepLineView stepLineView4 = getStepLineUnit(context, StepLineView.LineType.ONLY_ONE, StepLineView.OrderStatus.ACTIVE);
+            StepLineView stepLineView4 = getStepLineUnit(context, StepLineView.LineType.ONLY_ONE, StepLineView.OrderStatus.ACTIVE, stepLineViews.size(), _callBack_stepViewClick);
             stepLineViews.add(stepLineView4);
         }
         else {
             // numOfItems > 1
-            StepLineView stepLineView0 = getStepLineUnit(context, StepLineView.LineType.BEGIN, StepLineView.OrderStatus.ACTIVE);
+            StepLineView stepLineView0 = getStepLineUnit(context, StepLineView.LineType.BEGIN, StepLineView.OrderStatus.ACTIVE, stepLineViews.size(), _callBack_stepViewClick);
             stepLineViews.add(stepLineView0);
 
             for (int i = 1; i < numOfItems-1; i++) {
-                StepLineView stepLineView1 = getStepLineUnit(context, StepLineView.LineType.NORMAL, StepLineView.OrderStatus.ACTIVE);
+                StepLineView stepLineView1 = getStepLineUnit(context, StepLineView.LineType.NORMAL, StepLineView.OrderStatus.ACTIVE, stepLineViews.size(), _callBack_stepViewClick);
                 stepLineViews.add(stepLineView1);
             }
 
-            StepLineView stepLineView2 = getStepLineUnit(context, StepLineView.LineType.END, StepLineView.OrderStatus.ACTIVE);
+            StepLineView stepLineView2 = getStepLineUnit(context, StepLineView.LineType.END, StepLineView.OrderStatus.ACTIVE, stepLineViews.size(), _callBack_stepViewClick);
             stepLineViews.add(stepLineView2);
         }
 
@@ -121,7 +129,7 @@ public class StepLineLayout extends LinearLayout {
             stepLineViews.get(completedIndex).setOrderStatus(StepLineView.OrderStatus.COMPLETED);
     }
 
-    public StepLineView getStepLineUnit(Context context, StepLineView.LineType lineType, StepLineView.OrderStatus orderStatus) {
+    public StepLineView getStepLineUnit(Context context, StepLineView.LineType lineType, StepLineView.OrderStatus orderStatus, int _position, CallBack_StepViewClick _callBack_stepViewClick) {
         // markerSize - default=20
         LinearLayout.LayoutParams linearParams;
         if (lineOrientation == StepLineView.LineOrientation.HORIZONTAL)
@@ -144,6 +152,8 @@ public class StepLineLayout extends LinearLayout {
         stepLineView.setLinePadding(linePadding);
         stepLineView.setDrawables();
         stepLineView.setOrderStatus(orderStatus);
+        stepLineView.setPosition(_position);
+        stepLineView.setCallBack_stepViewClick(_callBack_stepViewClick);
 
         return stepLineView;
     }

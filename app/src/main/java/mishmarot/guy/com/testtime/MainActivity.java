@@ -5,7 +5,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
+import mishmarot.guy.com.timelineunit.CallBack_StepViewClick;
 import mishmarot.guy.com.timelineunit.StepLineLayout;
 import mishmarot.guy.com.timelineunit.StepLineView;
 
@@ -33,7 +35,12 @@ public class MainActivity extends AppCompatActivity {
         stepLayout_2.setStepLines(this, StepLineView.LineOrientation.VERTICAL, 12, Color.argb(123, 0, 0, 255), Color.argb(123, 0, 255, 0), Color.argb(123, 0, 255, 0), 3, 20, 10);
         stepLayout_3.setStepLines(this, StepLineView.LineOrientation.VERTICAL, 5, R.color.orange, R.color.yellow, R.color.orange);
         stepLayout_4.setStepLines(this, StepLineView.LineOrientation.VERTICAL, 6, Color.argb(200, 255, 0, 0), Color.argb(100, 255, 0, 0), Color.argb(123, 200, 200, 0), 4, 25, 0);
-        stepLayout_5.setStepLines(this, StepLineView.LineOrientation.VERTICAL, 40, R.color.colorPrimary, android.R.color.darker_gray, Color.argb(123, 200, 200, 0), 4, 25, 0);
+        stepLayout_5.setStepLines(this, StepLineView.LineOrientation.VERTICAL, 40, R.color.colorPrimary, android.R.color.darker_gray, Color.argb(123, 200, 200, 0), 4, 25, 0, new CallBack_StepViewClick() {
+            @Override
+            public void onClick(int position) {
+                Toast.makeText(MainActivity.this, position + " Clicked!!", Toast.LENGTH_SHORT).show();
+            }
+        });
 
 
 

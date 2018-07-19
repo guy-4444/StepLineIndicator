@@ -37,6 +37,9 @@ public class StepLineView extends View {
     private Rect mBounds;
     private Context mContext;
 
+    private int position = -1;
+    private CallBack_StepViewClick callBack_stepViewClick;
+
     Drawable a1, a2, a3;
 
     public StepLineView(Context context, AttributeSet attrs) {
@@ -376,6 +379,25 @@ public class StepLineView extends View {
         }
 
         invalidate();
+    }
+
+    public int getPosition() {
+        return position;
+    }
+
+    public void setPosition(int position) {
+        this.position = position;
+    }
+
+    public void setCallBack_stepViewClick(final CallBack_StepViewClick callBack_stepViewClick) {
+        this.callBack_stepViewClick = callBack_stepViewClick;
+
+        this.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                callBack_stepViewClick.onClick(position);
+            }
+        });
     }
 
     public int getMainColor() {
