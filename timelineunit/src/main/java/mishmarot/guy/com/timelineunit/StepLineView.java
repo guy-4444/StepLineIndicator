@@ -329,6 +329,21 @@ public class StepLineView extends View {
         a3.setColorFilter(mainColor, PorterDuff.Mode.SRC_IN);
     }
 
+    public void setDrawables(int marker_inactive, int marker_active, int marker_completed) {
+        if (marker_inactive!=0 && marker_active!=0 &&  marker_completed!=0) {
+            a1 = getDrawable(mContext, marker_inactive).mutate();
+            a2 = getDrawable(mContext, marker_active).mutate();
+            a3 = getDrawable(mContext, marker_completed).mutate();
+        }
+        else {
+            setDrawables();
+        }
+
+        a1.setColorFilter(mainColor, PorterDuff.Mode.SRC_IN);
+        a2.setColorFilter(secondColor, PorterDuff.Mode.SRC_IN);
+        a3.setColorFilter(mainColor, PorterDuff.Mode.SRC_IN);
+    }
+
     public enum LineOrientation {
         VERTICAL,
         HORIZONTAL;
@@ -395,7 +410,8 @@ public class StepLineView extends View {
         this.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
-                callBack_stepViewClick.onClick(position);
+                if (callBack_stepViewClick != null)
+                    callBack_stepViewClick.onClick(position);
             }
         });
     }

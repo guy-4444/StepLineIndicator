@@ -19,6 +19,12 @@ public class StepLineLayout extends LinearLayout {
     int markerRadius = 20;
     int lineSize = 3;
     int linePadding = 0;
+
+    int marker_inactive = 0;
+    int marker_active = 0;
+    int marker_completed = 0;
+
+
     StepLineView.LineOrientation lineOrientation = StepLineView.LineOrientation.VERTICAL;
 
     public StepLineLayout(Context context) {
@@ -40,6 +46,16 @@ public class StepLineLayout extends LinearLayout {
 
     public void setStepLines(Context context, StepLineView.LineOrientation _lineOrientation, int _numOfItems, int _mainColor, int _secondColor, int _lineColor, int _lineSize, int _markerRadius, int _linePadding){
         setStepLines(context, lineOrientation, _numOfItems, _mainColor, _secondColor, _lineColor, _lineSize, _markerRadius, _linePadding, null);
+    }
+
+    public void setStepLines(Context context, StepLineView.LineOrientation _lineOrientation, int _numOfItems, int _mainColor, int _secondColor, int _lineColor, int _lineSize, int _markerRadius, int _linePadding, int _marker_inactive, int _marker_active, int _marker_completed, CallBack_StepViewClick _callBack_stepViewClick){
+        this.lineSize = _lineSize;
+        this.markerRadius = _markerRadius;
+        this.linePadding = _linePadding;
+        this.marker_inactive = _marker_inactive;
+        this.marker_active = _marker_active;
+        this.marker_completed = _marker_completed;
+        setStepLines(context, _lineOrientation, _numOfItems, _mainColor, _secondColor, _lineColor, _callBack_stepViewClick);
     }
 
     public void setStepLines(Context context, StepLineView.LineOrientation _lineOrientation, int _numOfItems, int _mainColor, int _secondColor, int _lineColor, int _lineSize, int _markerRadius, int _linePadding, CallBack_StepViewClick _callBack_stepViewClick){
@@ -150,7 +166,7 @@ public class StepLineLayout extends LinearLayout {
         stepLineView.setLineSize((int) (lineSize * density));
         stepLineView.setMarkerSize((int) (markerRadius * density));
         stepLineView.setLinePadding(linePadding);
-        stepLineView.setDrawables();
+        stepLineView.setDrawables(marker_inactive, marker_active, marker_completed);
         stepLineView.setOrderStatus(orderStatus);
         stepLineView.setPosition(_position);
         stepLineView.setCallBack_stepViewClick(_callBack_stepViewClick);

@@ -31,11 +31,19 @@ public class MainActivity extends AppCompatActivity {
         stepLayout_4 = (StepLineLayout) findViewById(R.id.stepLayout_4);
         stepLayout_5 = (StepLineLayout) findViewById(R.id.stepLayout_5);
 
+
         stepLayout_1.setStepLines(this, StepLineView.LineOrientation.HORIZONTAL, 7, R.color.colorPrimary, android.R.color.darker_gray, R.color.colorPrimary);
         stepLayout_2.setStepLines(this, StepLineView.LineOrientation.VERTICAL, 12, Color.argb(123, 0, 0, 255), Color.argb(123, 0, 255, 0), Color.argb(123, 0, 255, 0), 3, 20, 10);
         stepLayout_3.setStepLines(this, StepLineView.LineOrientation.VERTICAL, 5, R.color.orange, R.color.yellow, R.color.orange);
         stepLayout_4.setStepLines(this, StepLineView.LineOrientation.VERTICAL, 6, Color.argb(200, 255, 0, 0), Color.argb(100, 255, 0, 0), Color.argb(123, 200, 200, 0), 4, 25, 0);
-        stepLayout_5.setStepLines(this, StepLineView.LineOrientation.VERTICAL, 40, R.color.colorPrimary, android.R.color.darker_gray, Color.argb(123, 200, 200, 0), 4, 25, 0, new CallBack_StepViewClick() {
+//        stepLayout_5.setStepLines(this, StepLineView.LineOrientation.VERTICAL, 40, R.color.colorPrimary, android.R.color.darker_gray, Color.argb(123, 200, 200, 0), 4, 25, 0, new CallBack_StepViewClick() {
+//            @Override
+//            public void onClick(int position) {
+//                Toast.makeText(MainActivity.this, position + " Clicked!!", Toast.LENGTH_SHORT).show();
+//            }
+//        });
+
+        stepLayout_5.setStepLines(this, StepLineView.LineOrientation.VERTICAL, 40, R.color.colorPrimary, android.R.color.darker_gray, Color.argb(123, 200, 200, 0), 4, 25, 0, R.drawable.ic_marker_2, R.drawable.ic_marker_2, R.drawable.ic_marker_1,  new CallBack_StepViewClick() {
             @Override
             public void onClick(int position) {
                 Toast.makeText(MainActivity.this, position + " Clicked!!", Toast.LENGTH_SHORT).show();
